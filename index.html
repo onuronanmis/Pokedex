@@ -19,7 +19,7 @@
         <div class="header-content">
             <h1 class="logo"><img src="./assets/img/pokodex-background-header-4.webp" alt="Pokédex"></h1>
             <form class="search-container" id="searchForm" role="search">
-                <input data-id="search-input" id="searchInput" class="search-input" type="search" placeholder="Search Pokémon (3+ letters)..." aria-label="Search Pokémon" autocomplete="off">
+                <input data-id="search-input" id="searchInput" class="search-input" type="search" placeholder="Search Pokémon..." aria-label="Search Pokémon" autocomplete="off">
                 <button data-id="search-button" id="searchButton" class="search-button" type="submit" aria-label="Search Pokémon">Search</button>
             </form>
             <div class="menu-wrap">
@@ -38,7 +38,7 @@
         <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" hidden><span class="spinner"></span> Loading Pokémon...</div>
         <button data-id="load-more-button" id="loadMoreButton" class="load-more-button" type="button" onclick="loadMorePokemon()" aria-label="Load more Pokémon">Load More (20) ↓</button>
     </main>
-    <footer class="footer"><button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑ Back to Top</button><span>Pokédex · Learning project · Data from PokéAPI</span></footer>
+    <footer class="footer"><button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑ Back to Top</button></footer>
     <dialog data-id="dialog" id="pokemonDialog" class="pokemon-dialog" aria-label="Pokémon details"><div id="dialogContent"></div></dialog>
 </body>
 </html>
