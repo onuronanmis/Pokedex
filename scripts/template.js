@@ -85,5 +85,5 @@ function evolutionTemplate(pokemonList, fallback) {
      ${pokemonList.map((p,i)=>`${i?
         '<span class="evolution-arrow" aria-hidden="true">→</span>':''}
         <div class="evolution-item">
-        <img src="${artwork(p) || fallback}" data-fallback="${fallback}" alt="${escapeHtml(p.name)}" loading="lazy"><span>${escapeHtml(p.name)}</span></div>`).join('')}</div>`;
+        <img src="${artwork(p) || fallback}" data-fallback="${fallback}" alt="${escapeHtml(p.name)}"><span>${escapeHtml(p.name)}</span></div>`).join('')}</div>`;
 }
