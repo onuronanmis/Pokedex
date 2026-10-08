@@ -1,0 +1,253 @@
+.pokemon-dialog {
+  border: 1px solid #49627f;
+  border-radius: 22px;
+  padding: 0;
+  width: min(430px, calc(100vw - 24px));
+  max-height: min(92vh, 950px);
+  background: #19263b;
+  color: #eef6ff;
+  box-shadow: 0 25px 100px #000b;
+  overflow: auto;
+}
+.pokemon-dialog::backdrop {
+  background: rgba(3, 9, 18, 0.8);
+  backdrop-filter: blur(6px);
+}
+body.dialog-open {
+  overflow: hidden;
+}
+.dialog-inner {
+  padding: 24px;
+}
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.dialog-header h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.65rem;
+}
+.dialog-id {
+  color: #93accb;
+}
+.close-dialog-button,
+.nav-button,
+.sprite-toggle {
+  border: 1px solid #506985;
+  border-radius: 9px;
+  background: #2c425e;
+  color: white;
+  padding: 9px 14px;
+}
+.dialog-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+.dialog-art {
+  flex: 1 1 230px;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+  border-radius: 15px;
+  background: radial-gradient(circle, var(--type-color), #162238 70%);
+}
+.dialog-image {
+  width: min(270px, 100%);
+  height: 245px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 10px #0006);
+}
+.dialog-facts {
+  flex: 1 1 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.fact-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.fact-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #91a9c6;
+  margin-bottom: 5px;
+}
+.detail-section {
+  border-top: 1px solid #354b66;
+  padding-top: 17px;
+  margin-top: 18px;
+}
+.detail-section h3 {
+  margin: 0 0 13px;
+  font-size: 1.02rem;
+}
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 9px 0;
+}
+.stat-label {
+  width: 78px;
+  font-size: 0.8rem;
+  color: #b6cbe3;
+}
+.stat-value {
+  width: 34px;
+  text-align: right;
+  font-size: 0.82rem;
+}
+.stat-track {
+  flex: 1;
+  height: 9px;
+  border-radius: 10px;
+  background: #35455d;
+  overflow: hidden;
+}
+.stat-fill {
+  height: 100%;
+  background: var(--type-color);
+  border-radius: 10px;
+}
+.evolution-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.evolution-link {
+  border: 1px solid #48607c;
+  border-radius: 12px;
+  background: #263a54;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  min-width: 105px;
+}
+.evolution-link img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+}
+.evolution-arrow {
+  color: #8daed5;
+}
+.dialog-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+.dialog-status {
+  color: #9cb5d1;
+  font-size: 0.85rem;
+}
+.sprite-toggle[aria-pressed="true"] {
+  background: #4386cd;
+}
+@media (max-width: 560px) {
+  .dialog-inner {
+    padding: 15px;
+  }
+  .dialog-hero {
+    gap: 12px;
+  }
+  .dialog-art {
+    min-height: 170px;
+  }
+  .dialog-image {
+    height: 180px;
+  }
+  .dialog-header h2 {
+    font-size: 1.2rem;
+  }
+  .dialog-nav {
+    gap: 6px;
+  }
+  .nav-button {
+    padding: 9px;
+  }
+}
+.pokemon-dialog {
+  max-width: 430px;
+  max-height: min(90dvh, 850px);
+}
+.dialog-inner {
+  padding: 16px;
+}
+.dialog-hero {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin: 12px 0;
+}
+.dialog-art {
+  flex: initial;
+  min-height: 150px;
+}
+.dialog-image {
+  height: 165px;
+  width: 100%;
+  max-width: 240px;
+}
+.dialog-facts {
+  flex: initial;
+  gap: 12px;
+}
+.dialog-facts .type-badges {
+  justify-content: center;
+}
+.evolution-list {
+  flex-wrap: nowrap;
+  gap: 5px;
+  justify-content: center;
+}
+.evolution-item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  text-align: center;
+}
+.evolution-item img {
+  width: 100%;
+  max-width: 85px;
+  height: 78px;
+  object-fit: contain;
+}
+.evolution-item span {
+  overflow-wrap: anywhere;
+}
+.evolution-arrow {
+  flex: 0 0 auto;
+}
+.nav-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+@media (max-width: 360px) {
+  .dialog-inner {
+    padding: 12px;
+  }
+  .evolution-item img {
+    height: 65px;
+  }
+}

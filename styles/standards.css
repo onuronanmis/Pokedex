@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  background: #0d1320;
+  color: #f1f5ff;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #7bd4ff;
+  outline-offset: 3px;
+}
+img {
+  max-width: 100%;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+[hidden] {
+  display: none !important;
+}

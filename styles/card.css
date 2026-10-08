@@ -1,0 +1,118 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.pokemon-list-item {
+  display: flex;
+  flex: 0 1 calc(20% - 16px);
+  min-width: 185px;
+  max-width: 250px;
+}
+.pokemon-card {
+  width: 100%;
+  min-height: 278px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #ffffff26;
+  border-radius: 18px;
+  background: linear-gradient(155deg, var(--type-color), #172438 86%);
+  color: white;
+  box-shadow: 0 8px 20px #0003;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.pokemon-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 16px 30px #0008;
+}
+.card-top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-number {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffffffc9;
+}
+.card-image {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 8px #0006);
+}
+.card-name {
+  font-size: 1.18rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+  text-align: center;
+}
+.type-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.type-badge {
+  display: inline-flex;
+  padding: 5px 11px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--badge-color);
+  color: white;
+  box-shadow: 0 1px 5px #0003;
+}
+@media (max-width: 1080px) {
+  .pokemon-list-item {
+    flex-basis: calc(25% - 15px);
+  }
+}
+@media (max-width: 840px) {
+  .pokemon-list-item {
+    flex-basis: calc(33.333% - 14px);
+  }
+}
+@media (max-width: 600px) {
+  .pokemon-list {
+    gap: 12px;
+  }
+  .pokemon-list-item {
+    flex-basis: calc(50% - 6px);
+    min-width: 0;
+  }
+  .pokemon-card {
+    min-height: 235px;
+    padding: 10px;
+  }
+  .card-image {
+    height: 115px;
+    width: 115px;
+  }
+  .card-name {
+    font-size: 0.95rem;
+  }
+  .type-badge {
+    font-size: 0.6rem;
+    padding: 4px 7px;
+  }
+}
+@media (max-width: 350px) {
+  .pokemon-card {
+    min-height: 215px;
+  }
+  .card-image {
+    height: 90px;
+    width: 90px;
+  }
+}

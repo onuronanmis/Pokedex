@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101725">
+    <title>Pokédex</title>
+    <link rel="icon" href="./assets/img/logo/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/standards.css">
+    <link rel="stylesheet" href="./styles/card.css">
+    <link rel="stylesheet" href="./styles/overlay.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./scripts/db.js"></script>
+    <script src="./scripts/template.js"></script>
+    <script src="./script.js"></script>
+</head>
+<body onload="init()">
+    <header class="header" id="top">
+        <div class="header-content">
+            <h1 class="logo"><img src="./assets/img/pokodex-background-header-4.webp" alt="Pokédex"></h1>
+            <form class="search-container" id="searchForm" role="search">
+                <input data-id="search-input" id="searchInput" class="search-input" type="search" placeholder="Search Pokémon (3+ letters)..." aria-label="Search Pokémon" autocomplete="off">
+                <button data-id="search-button" id="searchButton" class="search-button" type="submit" aria-label="Search Pokémon">Search</button>
+            </form>
+            <div class="menu-wrap">
+                <button class="menu-button" id="menuButton" aria-label="Filter by Pokémon type" aria-expanded="false" aria-controls="typeMenu" type="button">☰ <span>Types</span></button>
+                <div class="type-menu" id="typeMenu" hidden><p>FILTER BY TYPE</p><div id="typeOptions" class="type-options"></div></div>
+            </div>
+        </div>
+    </header>
+    <main data-id="content" class="content">
+        <div class="content-heading">
+            <p id="pokemonCounter" class="pokemon-counter" aria-live="polite"></p>
+        </div>
+        <div id="activeFilter" class="active-filter" hidden></div>
+        <ul id="pokemonList" class="pokemon-list" aria-label="Pokémon collection"></ul>
+        <div id="notFoundContainer" aria-live="polite"></div>
+        <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" hidden><span class="spinner"></span> Loading Pokémon...</div>
+        <button data-id="load-more-button" id="loadMoreButton" class="load-more-button" type="button" onclick="loadMorePokemon()" aria-label="Load more Pokémon">Load More (20) ↓</button>
+    </main>
+    <footer class="footer"><button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑ Back to Top</button><span>Pokédex · Learning project · Data from PokéAPI</span></footer>
+    <dialog data-id="dialog" id="pokemonDialog" class="pokemon-dialog" aria-label="Pokémon details"><div id="dialogContent"></div></dialog>
+</body>
+</html>
