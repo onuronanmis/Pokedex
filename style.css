@@ -206,6 +206,8 @@ body {
 @media (max-width: 720px) {
   .header {
     padding: 20px 16px 30px;
+    background-size: auto, 92% auto;
+    background-position: center, center 55%;
   }
   .header-content {
     gap: 12px;
