@@ -58,7 +58,7 @@ function dialogHero(pokemon,name,shiny) {
 }
 
 function dialogFacts(pokemon) {
-    const abilities = pokemon.abilities.map(a=>escapeHtml(a.ability.name)).join(', ');
+    const abilities = getDisplayAbilities(pokemon).map(escapeHtml).join(', ');
     return /*html*/`
     <div class="fact-row">
         <div><span class="fact-label">${translateText('height')}</span>${pokemon.height/10} m</div>

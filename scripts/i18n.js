@@ -53,9 +53,21 @@ function getDisplayName(pokemon) {
     return currentLanguage === 'de' && pokemon.germanName ? pokemon.germanName : pokemon.name;
 }
 
+function getDisplayAbilities(pokemon) {
+    const englishAbilities = pokemon.abilities.map(entry => entry.ability.name);
+    return currentLanguage === 'de' && pokemon.germanAbilities ? pokemon.germanAbilities : englishAbilities;
+}
+
 async function localizePokemon(pokemon) {
     if (currentLanguage !== 'de' || pokemon.germanName) return pokemon;
     try { pokemon.germanName = findGermanName((await getSpecies(pokemon.id)).names) || pokemon.name; }
     catch { pokemon.germanName = pokemon.name; }
+    return pokemon;
+}
+
+async function localizeAbilities(pokemon) {
+    if (currentLanguage !== 'de' || pokemon.germanAbilities) return pokemon;
+    pokemon.germanAbilities = await Promise.all(pokemon.abilities.map(entry =>
+        getAbility(entry.ability.name).then(ability => findGermanName(ability.names) || entry.ability.name).catch(() => entry.ability.name)));
     return pokemon;
 }

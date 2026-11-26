@@ -143,7 +143,7 @@ async function openPokemonDialog(id) {
     if (!$('pokemonDialog').open) $('pokemonDialog').showModal();
     document.body.classList.add('dialog-open');
     $('dialogContent').innerHTML=`<div class="loading-indicator">${translateText('loadingDetails')}</div>`;
-    try { const pokemon=await getPokemon(id); await localizePokemon(pokemon); if(token!==dialogToken)return; renderDialog(pokemon); await loadEvolutions(pokemon,token); }
+    try { const pokemon=await getPokemon(id); await localizePokemon(pokemon); await localizeAbilities(pokemon); if(token!==dialogToken)return; renderDialog(pokemon); await loadEvolutions(pokemon,token); }
     catch { if(token===dialogToken) $('dialogContent').innerHTML=`<p class="not-found">${translateText('detailsFailed')}</p><button data-id="close-dialog-button" class="close-dialog-button">${translateText('close')}</button>`; }
 }
 
