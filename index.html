@@ -21,11 +21,11 @@
             <h1 class="logo"><img src="./assets/img/pokodex-background-header-4.webp" alt="Pokédex"></h1>
             <form class="search-container" id="searchForm" role="search">
                 <input data-id="search-input" id="searchInput" class="search-input" type="search" placeholder="Search Pokémon..." aria-label="Search Pokémon" autocomplete="off">
-                <button data-id="search-button" id="searchButton" class="search-button" type="submit" aria-label="Search Pokémon">Search</button>
+                <button data-id="search-button" id="searchButton" class="search-button" type="submit" aria-label="Search Pokémon" data-i18n="searchButton">Search</button>
             </form>
             <div class="menu-wrap">
-                <button class="menu-button" id="menuButton" aria-label="Filter by Pokémon type" aria-expanded="false" aria-controls="typeMenu" type="button">☰ <span>Types</span></button>
-                <div class="type-menu" id="typeMenu" hidden><p>FILTER BY TYPE</p><div id="typeOptions" class="type-options"></div></div>
+                <button class="menu-button" id="menuButton" aria-label="Filter by Pokémon type" aria-expanded="false" aria-controls="typeMenu" type="button">☰ <span data-i18n="typesButton">Types</span></button>
+                <div class="type-menu" id="typeMenu" hidden><p data-i18n="typeMenuTitle">FILTER BY TYPE</p><div id="typeOptions" class="type-options"></div></div>
             </div>
         </div>
     </header>
@@ -36,10 +36,10 @@
         <div id="activeFilter" class="active-filter" hidden></div>
         <ul id="pokemonList" class="pokemon-list" aria-label="Pokémon collection"></ul>
         <div id="notFoundContainer" aria-live="polite"></div>
-        <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" hidden><span class="spinner"></span> Loading Pokémon...</div>
-        <button data-id="load-more-button" id="loadMoreButton" class="load-more-button" type="button" onclick="loadMorePokemon()" aria-label="Load more Pokémon">Load More (20) ↓</button>
+        <div id="loadingIndicator" class="loading-indicator" role="status" aria-live="polite" hidden><span class="spinner"></span> <span data-i18n="loading">Loading Pokémon...</span></div>
+        <button data-id="load-more-button" id="loadMoreButton" class="load-more-button" type="button" onclick="loadMorePokemon()" aria-label="Load more Pokémon" data-i18n="loadMore">Load More (20) ↓</button>
     </main>
-    <footer class="footer"><button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑ Back to Top</button></footer>
+    <footer class="footer"><button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" data-i18n="backToTop">↑ Back to Top</button></footer>
     <dialog data-id="dialog" id="pokemonDialog" class="pokemon-dialog" aria-label="Pokémon details"><div id="dialogContent"></div></dialog>
 </body>
 </html>

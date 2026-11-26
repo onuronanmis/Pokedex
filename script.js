@@ -12,6 +12,7 @@ let dialogToken = 0;
 const $ = id => document.getElementById(id);
 
 function init() {
+    applyStaticTexts();
     buildTypeMenu(); 
     initEvents(); 
     applyType('all');

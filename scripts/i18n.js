@@ -38,3 +38,9 @@ function translateType(type) {
     if (type === 'all') return translateText('all');
     return currentLanguage === 'de' ? TYPE_NAMES_DE[type] : type;
 }
+
+function applyStaticTexts() {
+    document.documentElement.lang = currentLanguage;
+    document.querySelectorAll('[data-i18n]').forEach(element => element.textContent = translateText(element.dataset.i18n));
+    $('searchInput').placeholder = translateText('searchPlaceholder');
+}
