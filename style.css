@@ -235,15 +235,25 @@ body {
     padding: 22px 16px;
   }
 }
-@media (max-width: 360px) {
-  .search-button {
-    padding: 12px;
-  }
-  .menu-button {
+@media (max-width: 480px) {
+  .menu-button,
+  .language-button {
     padding: 10px;
+  }
+  .logo {
+    flex-basis: 140px;
+  }
+  .logo img {
+    width: 140px;
+    height: 48px;
   }
   .menu-button span {
     display: none;
+  }
+}
+@media (max-width: 360px) {
+  .search-button {
+    padding: 12px;
   }
 }
 
