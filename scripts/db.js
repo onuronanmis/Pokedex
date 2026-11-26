@@ -4,6 +4,7 @@ const pokemonCache = new Map();
 const speciesCache = new Map();
 const evolutionCache = new Map();
 const typeCache = new Map();
+const ABILITY_CACHE = new Map();
 const TYPE_COLORS = {normal:'#8d96a0',fire:'#ef7847',water:'#4b91db',electric:'#e9b832',grass:'#56aa79',ice:'#70c8d1',fighting:'#cb6158',poison:'#a467c1',ground:'#c69b5b',flying:'#869ed8',psychic:'#e574a5',bug:'#8aa74b',rock:'#a99b72',ghost:'#7468ac',dragon:'#6365c8',dark:'#596072',steel:'#759aa7',fairy:'#d98eb8'};
 const TYPES = Object.keys(TYPE_COLORS);
 async function fetchJson(url) {
@@ -35,4 +36,10 @@ async function getTypeIds(type) {
     if (!typeCache.has(type)) typeCache.set(type, fetchJson(`${API_BASE}/type/${type}`));
     try { return (await typeCache.get(type)).pokemon.map(item => Number(item.pokemon.url.split('/').filter(Boolean).pop())).filter(id => id <= 1025).sort((a,b)=>a-b); }
     catch (error) { typeCache.delete(type); throw error; }
+}
+
+async function getAbility(name) {
+    if (!ABILITY_CACHE.has(name)) ABILITY_CACHE.set(name, fetchJson(`${API_BASE}/ability/${name}`));
+    try { return await ABILITY_CACHE.get(name); }
+    catch (error) { ABILITY_CACHE.delete(name); throw error; }
 }
