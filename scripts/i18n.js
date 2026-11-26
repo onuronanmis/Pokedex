@@ -44,3 +44,18 @@ function applyStaticTexts() {
     document.querySelectorAll('[data-i18n]').forEach(element => element.textContent = translateText(element.dataset.i18n));
     $('searchInput').placeholder = translateText('searchPlaceholder');
 }
+
+function findGermanName(names) {
+    return names.find(entry => entry.language.name === 'de')?.name;
+}
+
+function getDisplayName(pokemon) {
+    return currentLanguage === 'de' && pokemon.germanName ? pokemon.germanName : pokemon.name;
+}
+
+async function localizePokemon(pokemon) {
+    if (currentLanguage !== 'de' || pokemon.germanName) return pokemon;
+    try { pokemon.germanName = findGermanName((await getSpecies(pokemon.id)).names) || pokemon.name; }
+    catch { pokemon.germanName = pokemon.name; }
+    return pokemon;
+}

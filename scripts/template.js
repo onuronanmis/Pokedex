@@ -13,7 +13,7 @@ function typeBadges(pokemon) {
 }
 
 function cardTemplate(pokemon) {
-    const name = escapeHtml(pokemon.name);
+    const name = escapeHtml(getDisplayName(pokemon));
     const color = TYPE_COLORS[pokemon.types[0].type.name];
     return /*html*/`       
     <li class="pokemon-list-item">
@@ -28,7 +28,7 @@ function cardTemplate(pokemon) {
 }
 
 function dialogTemplate(pokemon, shiny) {
-    const name = escapeHtml(pokemon.name);
+    const name = escapeHtml(getDisplayName(pokemon));
     const color = TYPE_COLORS[pokemon.types[0].type.name];
     return /*html*/`
     <div class="dialog-inner" data-id="overlay-pokemon-name" style="--type-color:${color}">${dialogHeader(pokemon,name)}${dialogHero(pokemon,name,shiny)}
@@ -85,5 +85,5 @@ function evolutionTemplate(pokemonList, fallback) {
      ${pokemonList.map((p,i)=>`${i?
         '<span class="evolution-arrow" aria-hidden="true">→</span>':''}
         <div class="evolution-item">
-        <img src="${artwork(p) || fallback}" data-fallback="${fallback}" alt="${escapeHtml(p.name)}"><span>${escapeHtml(p.name)}</span></div>`).join('')}</div>`;
+        <img src="${artwork(p) || fallback}" data-fallback="${fallback}" alt="${escapeHtml(getDisplayName(p))}"><span>${escapeHtml(getDisplayName(p))}</span></div>`).join('')}</div>`;
 }

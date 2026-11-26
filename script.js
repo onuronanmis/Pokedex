@@ -50,6 +50,7 @@ async function fetchBatch(ids) {
     const results = await Promise.allSettled(ids.map(getPokemon));
     const successes = results.filter(r=>r.status==='fulfilled').map(r=>r.value);
     if (successes.length !== ids.length) showError(translateText('partialError'));
+    await Promise.all(successes.map(localizePokemon));
     return successes;
 }
 
@@ -142,7 +143,7 @@ async function openPokemonDialog(id) {
     if (!$('pokemonDialog').open) $('pokemonDialog').showModal();
     document.body.classList.add('dialog-open');
     $('dialogContent').innerHTML=`<div class="loading-indicator">${translateText('loadingDetails')}</div>`;
-    try { const pokemon=await getPokemon(id); if(token!==dialogToken)return; renderDialog(pokemon); await loadEvolutions(pokemon,token); }
+    try { const pokemon=await getPokemon(id); await localizePokemon(pokemon); if(token!==dialogToken)return; renderDialog(pokemon); await loadEvolutions(pokemon,token); }
     catch { if(token===dialogToken) $('dialogContent').innerHTML=`<p class="not-found">${translateText('detailsFailed')}</p><button data-id="close-dialog-button" class="close-dialog-button">${translateText('close')}</button>`; }
 }
 
@@ -154,7 +155,7 @@ function renderDialog(pokemon) {
 }
 
 async function loadEvolutions(pokemon,token) {
-    try { const species=await getSpecies(pokemon.id); const chain=await getEvolution(species.evolution_chain.url); const nodes=evolutionNodes(chain.chain); const evolutions=await Promise.all(nodes.map(n=>getPokemon(n.name))); if(token===dialogToken && $('evolutionContent')) $('evolutionContent').innerHTML=evolutionTemplate(evolutions, artwork(pokemon)); }
+    try { const species=await getSpecies(pokemon.id); const chain=await getEvolution(species.evolution_chain.url); const nodes=evolutionNodes(chain.chain); const evolutions=await Promise.all(nodes.map(n=>getPokemon(n.name).then(localizePokemon))); if(token===dialogToken && $('evolutionContent')) $('evolutionContent').innerHTML=evolutionTemplate(evolutions, artwork(pokemon)); }
     catch { if(token===dialogToken && $('evolutionContent')) $('evolutionContent').textContent=translateText('evolutionFailed'); }
 }
 
@@ -181,7 +182,7 @@ async function toggleShiny() {
     isShiny = !isShiny && shinyAvailable;
     const image = document.querySelector('[data-id="dialog-image"]');
     image.src = artwork(pokemon, isShiny);
-    image.alt = `${isShiny ? 'Shiny ' : ''}${pokemon.name}`;
+    image.alt = `${isShiny ? 'Shiny ' : ''}${getDisplayName(pokemon)}`;
     $('shinyToggle').textContent = isShiny ? translateText('shinyArtwork') : translateText('normalArtwork');
     $('shinyToggle').setAttribute('aria-pressed', String(isShiny));
 }
