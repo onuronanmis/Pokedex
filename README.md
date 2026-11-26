@@ -17,6 +17,7 @@ Eine responsive Pokédex-Web-App in Vanilla JavaScript, entstanden als Projekt d
 - Detailansicht mit Größe, Gewicht, Fähigkeiten und Entwicklungsreihe
 - **Shiny-Modus:** Umschalten auf das Shiny-Artwork in der Detailansicht
 - Vor- und Zurückblättern direkt in der Detailansicht
+- **Sprachumschaltung Deutsch/Englisch** ohne Neuladen: Oberfläche, Typen, Pokémon-Namen und Fähigkeiten werden übersetzt, geladene Pokémon bleiben erhalten, die Auswahl wird gespeichert (Suche weiterhin mit englischen Namen)
 - Ladeanzeige, Fehlermeldungen und Back-to-Top-Button
 - Responsives Design für Desktop, Tablet und Smartphone
 
@@ -25,6 +26,7 @@ Eine responsive Pokédex-Web-App in Vanilla JavaScript, entstanden als Projekt d
 | Aktion | Funktion |
 |---|---|
 | Karte anklicken | Detailansicht öffnen |
+| Deutsch / English | Sprache wechseln |
 | ☰ Types | Nach Typ filtern |
 | Suchfeld + Search | Pokémon nach Namen suchen |
 | Load More | 20 weitere Pokémon laden |
@@ -36,7 +38,8 @@ Eine responsive Pokédex-Web-App in Vanilla JavaScript, entstanden als Projekt d
 - HTML5 (natives `<dialog>`-Element)
 - CSS (responsiv, aufgeteilt in Standards, Karten und Overlay)
 - Vanilla JavaScript (async/await, Fetch API)
-- [PokéAPI](https://pokeapi.co/) als Datenquelle
+- [PokéAPI](https://pokeapi.co/) als Datenquelle, deutsche Namen über die Endpunkte `pokemon-species` und `ability`
+- `localStorage` für die gewählte Sprache
 
 ### Starten
 
@@ -63,6 +66,7 @@ A responsive Pokédex web app built with vanilla JavaScript as a Developer Akade
 - Detail view with height, weight, abilities and evolution chain
 - **Shiny mode:** switch to the shiny artwork in the detail view
 - Browse to the previous or next Pokémon inside the detail view
+- **Language switch German/English** without reload: interface, types, Pokémon names and abilities are translated, loaded Pokémon stay on the page, the choice is saved (search still uses English names)
 - Loading indicator, error messages and back-to-top button
 - Responsive design for desktop, tablet and mobile
 
@@ -71,6 +75,7 @@ A responsive Pokédex web app built with vanilla JavaScript as a Developer Akade
 | Action | Function |
 |---|---|
 | Click a card | Open detail view |
+| Deutsch / English | Switch language |
 | ☰ Types | Filter by type |
 | Search field + Search | Search Pokémon by name |
 | Load More | Load 20 more Pokémon |
@@ -82,7 +87,8 @@ A responsive Pokédex web app built with vanilla JavaScript as a Developer Akade
 - HTML5 (native `<dialog>` element)
 - CSS (responsive, split into standards, cards and overlay)
 - Vanilla JavaScript (async/await, Fetch API)
-- [PokéAPI](https://pokeapi.co/) as data source
+- [PokéAPI](https://pokeapi.co/) as data source, German names via the `pokemon-species` and `ability` endpoints
+- `localStorage` for the selected language
 
 ### Getting Started
 
