@@ -101,7 +101,7 @@ function getMatchingIds(list, query) {
 }
 
 function buildTypeMenu() {
-    $('typeOptions').innerHTML = ['all',...TYPES].map(type=>`<button type="button" class="type-option" data-type="${type}" aria-pressed="false" style="background:${TYPE_COLORS[type]||'#3b83d6'}">${type[0].toUpperCase()+type.slice(1)}</button>`).join('');
+    $('typeOptions').innerHTML = ['all',...TYPES].map(type=>`<button type="button" class="type-option" data-type="${type}" aria-pressed="false" style="background:${TYPE_COLORS[type]||'#3b83d6'}">${translateType(type)[0].toUpperCase()+translateType(type).slice(1)}</button>`).join('');
 }
 
 function toggleTypeMenu(force) {
@@ -114,11 +114,15 @@ async function applyType(type) {
     if (isLoading) return;
     activeType = type === 'all' ? '' : type;
     activeSearch = ''; searchIds = []; $('searchInput').value = ''; clearResults(); nextId = 1;
-    $('activeFilter').hidden = !activeType;
-    $('activeFilter').textContent = activeType ? `Filtered by: ${activeType.toUpperCase()}` : '';
-    document.querySelectorAll('[data-type]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.type === (activeType||'all'))));
+    updateFilterState();
     if (!activeType) { activeIds=[]; await loadMorePokemon(); return; }
     await loadTypeResults();
+}
+
+function updateFilterState() {
+    $('activeFilter').hidden = !activeType;
+    $('activeFilter').textContent = activeType ? `${translateText('filteredBy')} ${translateType(activeType).toUpperCase()}` : '';
+    document.querySelectorAll('[data-type]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.type === (activeType||'all'))));
 }
 
 async function loadTypeResults() {

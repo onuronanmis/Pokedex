@@ -9,7 +9,7 @@ function escapeHtml(text) {
 
 function typeBadges(pokemon) {
     return pokemon.types.map(item => /*html*/`      
-       <span class="type-badge" style="--badge-color:${TYPE_COLORS[item.type.name]}">${item.type.name}</span>`).join('');
+       <span class="type-badge" style="--badge-color:${TYPE_COLORS[item.type.name]}">${translateType(item.type.name)}</span>`).join('');
 }
 
 function cardTemplate(pokemon) {
