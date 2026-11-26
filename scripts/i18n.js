@@ -46,8 +46,10 @@ function applyStaticTexts() {
 }
 
 function toggleLanguage() {
-    localStorage.setItem(LANGUAGE_KEY, currentLanguage === 'en' ? 'de' : 'en');
-    location.reload();
+    if (isLoading) return;
+    currentLanguage = currentLanguage === 'en' ? 'de' : 'en';
+    localStorage.setItem(LANGUAGE_KEY, currentLanguage);
+    switchLanguage();
 }
 
 function findGermanName(names) {

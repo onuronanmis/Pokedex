@@ -13,7 +13,7 @@ const $ = id => document.getElementById(id);
 
 function init() {
     applyStaticTexts();
-    buildTypeMenu(); 
+    buildTypeMenu();
     initEvents(); 
     applyType('all');
 }
@@ -124,6 +124,22 @@ function updateFilterState() {
     $('activeFilter').hidden = !activeType;
     $('activeFilter').textContent = activeType ? `${translateText('filteredBy')} ${translateType(activeType).toUpperCase()}` : '';
     document.querySelectorAll('[data-type]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.type === (activeType||'all'))));
+}
+
+async function switchLanguage() {
+    applyStaticTexts();
+    buildTypeMenu();
+    updateFilterState();
+    setLoading(true);
+    try { await renderVisiblePokemon(); }
+    finally { setLoading(false); updateCounter(); }
+    if ($('pokemonDialog').open && currentPokemonId) openPokemonDialog(currentPokemonId);
+}
+
+async function renderVisiblePokemon() {
+    const pokemonList = await Promise.all(visibleIds.map(getPokemon));
+    await Promise.all(pokemonList.map(localizePokemon));
+    $('pokemonList').innerHTML = pokemonList.map(cardTemplate).join('');
 }
 
 async function loadTypeResults() {
