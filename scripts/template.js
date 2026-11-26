@@ -63,7 +63,7 @@ function dialogFacts(pokemon) {
     <div class="fact-row">
         <div><span class="fact-label">HEIGHT</span>${pokemon.height/10} m</div>
         <div><span class="fact-label">WEIGHT</span>${pokemon.weight/10} kg</div>
-    </div><div><span class="fact-label">ABILITIES</span>${abilities}</div>`;
+    </div><div class="ability-list"><span class="fact-label">ABILITIES</span>${abilities}</div>`;
 }
 
 function dialogNavigation() {

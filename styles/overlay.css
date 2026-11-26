@@ -234,6 +234,10 @@ body.dialog-open {
 }
 .evolution-item span {
   overflow-wrap: anywhere;
+  text-transform: capitalize;
+}
+.ability-list {
+  text-transform: capitalize;
 }
 .evolution-arrow {
   flex: 0 0 auto;
