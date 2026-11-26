@@ -36,7 +36,7 @@ function clearResults() {
 }
 
 function updateCounter() {
-    $('pokemonCounter').textContent = `${visibleIds.length} Pokémon shown`;
+    $('pokemonCounter').textContent = `${visibleIds.length} ${translateText('counter')}`;
     $('loadMoreButton').hidden = activeSearch ? visibleIds.length >= searchIds.length : (activeType ? visibleIds.length >= activeIds.length : nextId > 1025);
 }
 
@@ -49,7 +49,7 @@ function renderPokemon(pokemonList) {
 async function fetchBatch(ids) {
     const results = await Promise.allSettled(ids.map(getPokemon));
     const successes = results.filter(r=>r.status==='fulfilled').map(r=>r.value);
-    if (successes.length !== ids.length) showError('Some Pokémon could not be loaded. Try again.');
+    if (successes.length !== ids.length) showError(translateText('partialError'));
     return successes;
 }
 
@@ -59,7 +59,7 @@ async function loadMorePokemon() {
     if (!ids.length) { updateCounter(); return; }
     setLoading(true);
     try { renderPokemon(await fetchBatch(ids)); if (!activeSearch && !activeType) nextId += ids.length; }
-    catch { showError('Loading failed. Please try again.'); }
+    catch { showError(translateText('loadFailed')); }
     finally { setLoading(false); updateCounter(); }
 }
 
@@ -73,7 +73,7 @@ async function searchPokemon(event) {
     if (event) event.preventDefault();
     if (isLoading) return;
     const query = $('searchInput').value.trim().toLowerCase();
-    if (query && query.length < 3) { showError('Enter at least 3 letters.'); return; }
+    if (query && query.length < 3) { showError(translateText('minLetters')); return; }
     clearResults(); nextId = 1; activeSearch = query; searchIds = [];
     if (!query) { await applyType(activeType); return; }
     await runSearch(query);
@@ -88,9 +88,9 @@ async function getSearchList() {
 async function runSearch(query) {
     setLoading(true);
     try { searchIds = getMatchingIds(await getSearchList(), query); }
-    catch { showError('Search failed. Check your connection.'); setLoading(false); return; }
+    catch { showError(translateText('searchFailed')); setLoading(false); return; }
     setLoading(false);
-    if (!searchIds.length) { showError('No matching Pokémon found.'); updateCounter(); return; }
+    if (!searchIds.length) { showError(translateText('noMatch')); updateCounter(); return; }
     await loadMorePokemon();
 }
 
@@ -124,7 +124,7 @@ async function applyType(type) {
 async function loadTypeResults() {
     setLoading(true);
     try { activeIds=await getTypeIds(activeType); renderPokemon(await fetchBatch(activeIds.slice(0,PAGE_SIZE))); }
-    catch { showError('Type filter failed. Please try again.'); }
+    catch { showError(translateText('typeFailed')); }
     finally { setLoading(false); updateCounter(); }
 }
 
@@ -137,9 +137,9 @@ async function openPokemonDialog(id) {
     const token=++dialogToken; currentPokemonId=id; isShiny=false;
     if (!$('pokemonDialog').open) $('pokemonDialog').showModal();
     document.body.classList.add('dialog-open');
-    $('dialogContent').innerHTML='<div class="loading-indicator">Loading details...</div>';
+    $('dialogContent').innerHTML=`<div class="loading-indicator">${translateText('loadingDetails')}</div>`;
     try { const pokemon=await getPokemon(id); if(token!==dialogToken)return; renderDialog(pokemon); await loadEvolutions(pokemon,token); }
-    catch { if(token===dialogToken) $('dialogContent').innerHTML='<p class="not-found">Could not load Pokémon details.</p><button data-id="close-dialog-button" class="close-dialog-button">Close</button>'; }
+    catch { if(token===dialogToken) $('dialogContent').innerHTML=`<p class="not-found">${translateText('detailsFailed')}</p><button data-id="close-dialog-button" class="close-dialog-button">${translateText('close')}</button>`; }
 }
 
 function renderDialog(pokemon) {
@@ -151,7 +151,7 @@ function renderDialog(pokemon) {
 
 async function loadEvolutions(pokemon,token) {
     try { const species=await getSpecies(pokemon.id); const chain=await getEvolution(species.evolution_chain.url); const nodes=evolutionNodes(chain.chain); const evolutions=await Promise.all(nodes.map(n=>getPokemon(n.name))); if(token===dialogToken && $('evolutionContent')) $('evolutionContent').innerHTML=evolutionTemplate(evolutions, artwork(pokemon)); }
-    catch { if(token===dialogToken && $('evolutionContent')) $('evolutionContent').textContent='Evolution information unavailable.'; }
+    catch { if(token===dialogToken && $('evolutionContent')) $('evolutionContent').textContent=translateText('evolutionFailed'); }
 }
 
 function navigateDialog(direction) {
@@ -178,7 +178,7 @@ async function toggleShiny() {
     const image = document.querySelector('[data-id="dialog-image"]');
     image.src = artwork(pokemon, isShiny);
     image.alt = `${isShiny ? 'Shiny ' : ''}${pokemon.name}`;
-    $('shinyToggle').textContent = isShiny ? '✨ Shiny artwork' : '✦ Normal artwork';
+    $('shinyToggle').textContent = isShiny ? translateText('shinyArtwork') : translateText('normalArtwork');
     $('shinyToggle').setAttribute('aria-pressed', String(isShiny));
 }
 

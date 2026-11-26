@@ -33,8 +33,8 @@ function dialogTemplate(pokemon, shiny) {
     return /*html*/`
     <div class="dialog-inner" data-id="overlay-pokemon-name" style="--type-color:${color}">${dialogHeader(pokemon,name)}${dialogHero(pokemon,name,shiny)}
          <section class="detail-section">
-            <h3>Evolution Chain</h3>
-            <div id="evolutionContent" class="dialog-status">Loading evolutions...</div>
+            <h3>${translateText('evolutionChain')}</h3>
+            <div id="evolutionContent" class="dialog-status">${translateText('loadingEvolutions')}</div>
         </section>${dialogNavigation()}
     </div>`;
 }
@@ -53,7 +53,7 @@ function dialogHero(pokemon,name,shiny) {
     <div class="dialog-hero">
         <div class="dialog-art"><img data-id="dialog-image" class="dialog-image" src="${artwork(pokemon,shiny)}" data-fallback="${normal}" alt="${shiny?'Shiny ':''}${name}"></div>
         <div class="dialog-facts"><div class="type-badges">${typeBadges(pokemon)}</div>${dialogFacts(pokemon)}
-        <button id="shinyToggle" class="sprite-toggle" aria-pressed="${shiny}" aria-label="Toggle shiny artwork">${shiny?'✨ Shiny':'✦ Normal'} artwork</button></div>
+        <button id="shinyToggle" class="sprite-toggle" aria-pressed="${shiny}" aria-label="Toggle shiny artwork">${shiny?translateText('shinyArtwork'):translateText('normalArtwork')}</button></div>
     </div>`;
 }
 
@@ -61,16 +61,16 @@ function dialogFacts(pokemon) {
     const abilities = pokemon.abilities.map(a=>escapeHtml(a.ability.name)).join(', ');
     return /*html*/`
     <div class="fact-row">
-        <div><span class="fact-label">HEIGHT</span>${pokemon.height/10} m</div>
-        <div><span class="fact-label">WEIGHT</span>${pokemon.weight/10} kg</div>
-    </div><div class="ability-list"><span class="fact-label">ABILITIES</span>${abilities}</div>`;
+        <div><span class="fact-label">${translateText('height')}</span>${pokemon.height/10} m</div>
+        <div><span class="fact-label">${translateText('weight')}</span>${pokemon.weight/10} kg</div>
+    </div><div class="ability-list"><span class="fact-label">${translateText('abilities')}</span>${abilities}</div>`;
 }
 
 function dialogNavigation() {
     return /*html*/`
     <div class="dialog-nav">
-        <button data-id="prev-button" class="nav-button" aria-label="Previous Pokémon">← Previous</button>
-        <button data-id="next-button" class="nav-button" aria-label="Next Pokémon">Next →</button>
+        <button data-id="prev-button" class="nav-button" aria-label="Previous Pokémon">${translateText('previous')}</button>
+        <button data-id="next-button" class="nav-button" aria-label="Next Pokémon">${translateText('next')}</button>
     </div>`;
 }
 
