@@ -72,6 +72,24 @@ body {
   border: 1px solid #57718c;
   white-space: nowrap;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.header-actions .menu-wrap {
+  margin-left: 0;
+}
+.language-button {
+  border: 1px solid #57718c;
+  border-radius: 12px;
+  background: #223953;
+  color: white;
+  font-weight: 700;
+  padding: 14px 22px;
+  white-space: nowrap;
+}
 .type-menu {
   position: absolute;
   right: 0;

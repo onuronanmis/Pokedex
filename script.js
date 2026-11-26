@@ -204,6 +204,7 @@ function initEvents() {
     $('pokemonDialog').addEventListener('click',handleDialogClick);
     $('pokemonDialog').addEventListener('close',()=>{document.body.classList.remove('dialog-open');currentPokemonId=null;dialogToken++;});
     $('backToTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    $('language-button').addEventListener('click', toggleLanguage);
     document.addEventListener('click',event=>{if(!event.target.closest('.menu-wrap'))toggleTypeMenu(false);});
 }
 

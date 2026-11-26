@@ -23,9 +23,12 @@
                 <input data-id="search-input" id="searchInput" class="search-input" type="search" placeholder="Search Pokémon..." aria-label="Search Pokémon" autocomplete="off">
                 <button data-id="search-button" id="searchButton" class="search-button" type="submit" aria-label="Search Pokémon" data-i18n="searchButton">Search</button>
             </form>
-            <div class="menu-wrap">
-                <button class="menu-button" id="menuButton" aria-label="Filter by Pokémon type" aria-expanded="false" aria-controls="typeMenu" type="button">☰ <span data-i18n="typesButton">Types</span></button>
-                <div class="type-menu" id="typeMenu" hidden><p data-i18n="typeMenuTitle">FILTER BY TYPE</p><div id="typeOptions" class="type-options"></div></div>
+            <div class="header-actions">
+                <button class="language-button" id="language-button" type="button" data-i18n="languageButton">Deutsch</button>
+                <div class="menu-wrap">
+                    <button class="menu-button" id="menuButton" aria-label="Filter by Pokémon type" aria-expanded="false" aria-controls="typeMenu" type="button">☰ <span data-i18n="typesButton">Types</span></button>
+                    <div class="type-menu" id="typeMenu" hidden><p data-i18n="typeMenuTitle">FILTER BY TYPE</p><div id="typeOptions" class="type-options"></div></div>
+                </div>
             </div>
         </div>
     </header>

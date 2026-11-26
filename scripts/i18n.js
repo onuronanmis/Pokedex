@@ -45,6 +45,11 @@ function applyStaticTexts() {
     $('searchInput').placeholder = translateText('searchPlaceholder');
 }
 
+function toggleLanguage() {
+    localStorage.setItem(LANGUAGE_KEY, currentLanguage === 'en' ? 'de' : 'en');
+    location.reload();
+}
+
 function findGermanName(names) {
     return names.find(entry => entry.language.name === 'de')?.name;
 }
