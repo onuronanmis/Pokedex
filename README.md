@@ -1,4 +1,4 @@
-# 🔴 Pokédex
+# <img src="assets/img/logo/favicon.svg" width="32" alt="Pokéball"> Pokédex
 
 🇩🇪 [Deutsch](#deutsch) | 🇬🇧 [English](#english)
 
